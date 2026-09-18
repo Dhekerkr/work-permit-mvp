@@ -1,0 +1,10 @@
+import type {Check,Status} from './types'
+export const WORK_TYPES=[['HOT_WORK','أعمال ساخنة','Travaux par points chauds'],['WELDING','لحام','Soudage'],['CUTTING','قطع','Découpage'],['GRINDING','جلخ','Meulage'],['MECHANICAL','صيانة ميكانيكية','Maintenance mécanique'],['ELECTRICAL','صيانة كهربائية','Maintenance électrique'],['HEIGHT','أشغال في الارتفاع','Travail en hauteur'],['CONFINED_SPACE','أشغال داخل مكان مغلق','Espace confiné'],['OTHER','أخرى','Autre']] as const
+export const HOT_TYPES=['HOT_WORK','WELDING','CUTTING','GRINDING']
+export const SAFETY_LABELS=['تم تحديد منطقة العمل وتأمينها.','تم التأكد من عدم وجود تسرب للغاز.','تم إبعاد أو حماية المواد القابلة للاشتعال.','تم توفير وسائل الإطفاء المناسبة.','تم وضع الإشارات والحواجز اللازمة.','تم التأكد من ارتداء معدات الوقاية الفردية EPI/PPE.','تم عزل مصادر الطاقة عند الحاجة.','تم إعلام العاملين المعنيين بالأشغال.','تم اتخاذ جميع الاحتياطات المنصوص عليها بإجراءات السلامة.']
+export const HOT_LABELS=['تم التأكد من ملاءمة المكان للأشغال الساخنة.','تم اتخاذ الاحتياطات لمنع الشرر والحرارة من الوصول إلى مواد قابلة للاشتعال.','معدات الإطفاء متوفرة وقريبة من مكان العمل.','تم تحديد منطقة عزل وتأمين مناسبة.','تتم مراقبة الأشغال حسب إجراءات المؤسسة.','يتم إيقاف العمل فوراً عند ظهور أي خطر.']
+export const CLOSE_LABELS=['انتهت الأشغال.','تم رفع المعدات والأدوات.','تم تنظيف مكان العمل.','تم التأكد من عدم وجود مصدر خطر متبقٍ.','تم تسليم مكان العمل إلى مسؤول الوحدة.']
+export const makeChecks=(prefix:string,labels:string[]):Check[]=>labels.map((_,i)=>({code:`${prefix}${i+1}`,checked:false,comment:''}))
+export const STATUS:Record<Status,{label:string,style:string}>={DRAFT:{label:'Brouillon',style:'bg-slate-100 text-slate-700'},PENDING_APPROVAL:{label:'En attente HSE',style:'bg-amber-100 text-amber-800'},ACTIVE:{label:'Actif',style:'bg-emerald-100 text-emerald-800'},SUSPENDED:{label:'Suspendu',style:'bg-red-100 text-red-800'},REJECTED:{label:'Rejeté',style:'bg-rose-100 text-rose-800'},COMPLETED:{label:'Travaux terminés',style:'bg-blue-100 text-blue-800'},CLOSED:{label:'Clôturé',style:'bg-slate-200 text-slate-700'}}
+export const typeLabel=(code:string)=>WORK_TYPES.find(x=>x[0]===code)?.[2]||code
+

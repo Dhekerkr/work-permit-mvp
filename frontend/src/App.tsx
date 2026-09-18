@@ -1,0 +1,3 @@
+import{Navigate,Route,Routes}from'react-router-dom';import{useAuth}from'./auth';import{Layout}from'./components';import Dashboard from'./pages/Dashboard';import History from'./pages/History';import Login from'./pages/Login';import PermitDetail from'./pages/PermitDetail';import PermitWizard from'./pages/PermitWizard'
+export default function App(){const{user,loading}=useAuth();if(loading)return <div className="grid min-h-screen place-items-center">Chargement…</div>;if(!user)return <Login/>;return <Layout><Routes><Route path="/" element={<Dashboard/>}/><Route path="/permits/new" element={<PermitWizard/>}/><Route path="/permits/:id" element={<PermitDetail/>}/><Route path="/history" element={<History/>}/><Route path="*" element={<Navigate to="/"/>}/></Routes></Layout>}
+
